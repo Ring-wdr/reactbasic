@@ -1,0 +1,7 @@
+{
+  "prettier.jsxSingleQuote": true,
+  "prettier.singleQuote": true,
+  "turboConsoleLog.quote": "\"",
+  "files.autoSave": "off",
+  "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
+}
