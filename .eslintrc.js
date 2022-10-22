@@ -23,9 +23,10 @@ module.exports = {
     'react/react-in-jsx-scope': 'off',
     'react/jsx-uses-react': 'off',
     'react-hooks/rules-of-hooks': 'error',
-    'react-hooks/exhaustive-deps': 'warn',
+    'react-hooks/exhaustive-deps': 'off',
     'react/prop-types': 'off',
     'prettier/prettier': 'error',
+    'react/display-name': 'off',
     quotes: ['error', 'single', { allowTemplateLiterals: true }],
   },
   settings: {

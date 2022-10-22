@@ -1,13 +1,13 @@
-// import React from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
-import { SessionProvider } from './hooks/session-context';
+import { CountProvider } from './hooks/counter-context';
 import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  // <React.StrictMode>
-  <SessionProvider>
-    <App />
-  </SessionProvider>
-  // </React.StrictMode>
+  <React.StrictMode>
+    <CountProvider>
+      <App />
+    </CountProvider>
+  </React.StrictMode>
 );

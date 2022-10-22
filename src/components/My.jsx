@@ -1,54 +1,34 @@
-import { useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useSession } from '../hooks/session-context';
 import Login from './Login';
 import Profile from './Profile';
 
-const My = ({ plusCount, minusCount }) => {
-  const { session, addCartItem, removeCartItem } = useSession();
+const My = () => {
+  const { session, addCartItem, removeCartItem, logout } = useSession();
   const [subTitle, setSubTitle] = useState('');
   // const idRef = useRef();
   const nameRef = useRef();
   const priceRef = useRef();
-
-  const totalPrice = useMemo(() => {
-    return session.cart.reduce((s, a) => s + a.price, 0);
-  }, [session]);
-
-  const onNameChange = (e) => {
-    nameRef.current = e.target.value;
-  };
-  const onPriceChange = (e) => {
-    priceRef.current = e.target.value;
-  };
-  console.log('@@My>>>', session);
+  const logOutRef = useRef();
+  useEffect(() => {
+    if (logOutRef.current) logOutRef.current.onclick = logout;
+  }, []);
+  const totalPrice = useMemo(
+    () => session.cart.reduce((s, a) => s + a.price, 0),
+    [session]
+  );
   return (
     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr' }}>
-      <div>
-        {session.loginUser ? (
-          <Profile session={session} />
-        ) : (
-          <Login plusCount={plusCount} minusCount={minusCount} />
-        )}
-      </div>
+      <div>{session.loginUser ? <Profile ref={logOutRef} /> : <Login />}</div>
       <div style={{ display: 'flex', flexDirection: 'column' }}>
-        <input
-          type='text'
-          ref={nameRef}
-          onChange={onNameChange}
-          placeholder='name'
-        ></input>
-        <input
-          type='text'
-          ref={priceRef}
-          onChange={onPriceChange}
-          placeholder='price'
-        ></input>
+        <input type='text' ref={nameRef} placeholder='name' required></input>
+        <input type='text' ref={priceRef} placeholder='price' required></input>
         <button
           onClick={() => {
             addCartItem({
               id: session.cart[session.cart.length - 1].id + 1,
-              name: nameRef.current,
-              price: parseInt(priceRef.current),
+              name: nameRef.current.value,
+              price: parseInt(priceRef.current.value),
             });
           }}
         >
