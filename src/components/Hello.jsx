@@ -1,11 +1,29 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export const Hello = (props) => {
   // console.log("@@@@@");
   // const [nickname, setNickname] = useState("");
   const [isActive, setActive] = useState(false);
+  const [badSec, setBadSec] = useState(0);
+  const [goodSec, setGoodSec] = useState(0);
+
+  useEffect(() => {
+    setInterval(() => {
+      setBadSec((pre) => pre + 1);
+    }, 1000);
+
+    const intl = setInterval(() => {
+      setGoodSec((pre) => pre + 1);
+    }, 1000);
+    // }
+    return () => clearInterval(intl);
+  }, []);
+
   return (
     <>
+      <span style={{ float: 'left', color: 'red' }}>{badSec} sec</span>
+      <span style={{ float: 'right', color: 'blue' }}>{goodSec} sec</span>
+
       <h1 style={{ backgroundColor: 'darkgray' }}>
         Hello, {props.name}!{props.age && (props.isMale ? '군' : '양')}(
         {props.age ? props.age : 25})

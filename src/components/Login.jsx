@@ -8,14 +8,6 @@ const Login = () => {
   const userIdRef = useRef();
   const userNameRef = useRef();
 
-  useEffect(() => {
-    plusCount();
-    // userIdRef.current.value = '1231';
-    return () => {
-      minusCount();
-    };
-  }, []);
-
   const submit = (evt) => {
     evt.preventDefault();
 
@@ -32,6 +24,17 @@ const Login = () => {
     }
     login(parseInt(id), name);
   };
+
+  useEffect(() => {
+    plusCount();
+    console.log('로그인해주세용');
+    userIdRef.current.focus();
+    return () => {
+      minusCount();
+      console.log('로그인했어용');
+    };
+  }, []);
+  // }, [plusCount, minusCount]);
 
   return (
     <>

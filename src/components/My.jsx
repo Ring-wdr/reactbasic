@@ -12,7 +12,7 @@ const My = () => {
   const logOutRef = useRef();
   useEffect(() => {
     if (logOutRef.current) logOutRef.current.onclick = logout;
-  }, []);
+  }, [logout]);
   const totalPrice = useMemo(
     () => session.cart.reduce((s, a) => s + a.price, 0),
     [session]
@@ -26,7 +26,8 @@ const My = () => {
         <button
           onClick={() => {
             addCartItem({
-              id: session.cart[session.cart.length - 1].id + 1,
+              // id: session.cart[session.cart.length - 1].id + 1,
+              id: Math.max(...session.cart.map((item) => item.id), 0) + 1,
               name: nameRef.current.value,
               price: parseInt(priceRef.current.value),
             });

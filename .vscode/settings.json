@@ -3,5 +3,6 @@
   "prettier.singleQuote": true,
   "turboConsoleLog.quote": "\"",
   "files.autoSave": "off",
-  "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
+  "editor.defaultFormatter": "rvest.vs-code-prettier-eslint",
+  "editor.stickyScroll.enabled": true
 }
