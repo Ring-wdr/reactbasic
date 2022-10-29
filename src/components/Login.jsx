@@ -1,9 +1,8 @@
-import { useEffect, useRef } from 'react';
+import { memo, useEffect, useRef } from 'react';
 import { useCount } from '../hooks/counter-context';
-import { useSession } from '../hooks/session-context';
+// import { useSession } from '../hooks/session-context';
 
-const Login = () => {
-  const { login } = useSession();
+const Login = ({ login }) => {
   const { plusCount, minusCount } = useCount();
   const userIdRef = useRef();
   const userNameRef = useRef();
@@ -52,4 +51,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default memo(Login);

@@ -4,7 +4,7 @@ import Login from './Login';
 import Profile from './Profile';
 
 const My = () => {
-  const { session, addCartItem, removeCartItem, logout } = useSession();
+  const { session, addCartItem, removeCartItem, login, logout } = useSession();
   const [subTitle, setSubTitle] = useState('');
   // const idRef = useRef();
   const nameRef = useRef();
@@ -19,7 +19,13 @@ const My = () => {
   );
   return (
     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr' }}>
-      <div>{session.loginUser ? <Profile ref={logOutRef} /> : <Login />}</div>
+      <div>
+        {session.loginUser ? (
+          <Profile ref={logOutRef} />
+        ) : (
+          <Login login={login} />
+        )}
+      </div>
       <div style={{ display: 'flex', flexDirection: 'column' }}>
         <input type='text' ref={nameRef} placeholder='name' required></input>
         <input type='text' ref={priceRef} placeholder='price' required></input>

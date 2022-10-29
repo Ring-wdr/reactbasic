@@ -1,14 +1,11 @@
-import { createContext, useContext, useEffect, useState } from 'react';
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
 import { useFetch } from './fetch-hook';
-// import SampleSession from '../../public/data/sample.json';
-// const SampleSession = {
-//   loginUser: { id: 1, name: 'Hong' },
-//   cart: [
-//     { id: 100, name: '라면', price: 3000 },
-//     { id: 101, name: '컵라면', price: 2000 },
-//     { id: 200, name: '파', price: 5000 },
-//   ],
-// };
 
 const SAMPLE_URL = '/data/sample.json';
 
@@ -24,11 +21,11 @@ export const SessionProvider = ({ children }) => {
     data && setSession(data);
   }, [data]);
 
-  const login = (id, name) => {
+  const login = useCallback((id, name) => {
     console.log('App.login!!');
     setSession({ ...session, loginUser: { id, name } });
     console.log('App.session>>>', session);
-  };
+  }, []);
   const logout = () => {
     console.log('App.logout!!');
     // session.loginUser = null;
