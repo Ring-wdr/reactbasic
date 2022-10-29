@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { useCount } from '../hooks/counter-context';
 
 export const Hello = (props) => {
   // console.log("@@@@@");
@@ -7,7 +6,6 @@ export const Hello = (props) => {
   const [isActive, setActive] = useState(false);
   const [badSec, setBadSec] = useState(0);
   const [goodSec, setGoodSec] = useState(0);
-  const { plusCount } = useCount();
 
   useEffect(() => {
     setInterval(() => {
@@ -40,7 +38,7 @@ export const Hello = (props) => {
         >
           등급등급
         </button>
-        <button onClick={plusCount}> 카운트</button>
+        <button onClick={props.plusCount}> 카운트</button>
       </div>
     </>
   );
