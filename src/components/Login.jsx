@@ -1,11 +1,13 @@
 import { memo, useEffect, useRef } from 'react';
-import { useCount } from '../hooks/counter-context';
-// import { useSession } from '../hooks/session-context';
+// import { useCount } from '../hooks/counter-context';
+import { useSession } from '../hooks/session-context';
 
-const Login = ({ login }) => {
-  const { plusCount, minusCount } = useCount();
+const Login = () => {
+  // const { plusCount, minusCount } = useCount();
   const userIdRef = useRef();
   const userNameRef = useRef();
+
+  const { login } = useSession();
 
   const submit = (evt) => {
     evt.preventDefault();
@@ -25,11 +27,11 @@ const Login = ({ login }) => {
   };
 
   useEffect(() => {
-    plusCount();
+    // plusCount();
     console.log('로그인해주세용');
     userIdRef.current.focus();
     return () => {
-      minusCount();
+      // minusCount();
       console.log('로그인했어용');
     };
   }, []);
@@ -42,9 +44,6 @@ const Login = ({ login }) => {
       </div>
       <div>
         name: <input type='text' ref={userNameRef} />
-      </div>
-      <div>
-        Password: <input type='password' />
       </div>
       <button onClick={submit}>Login</button>
     </>

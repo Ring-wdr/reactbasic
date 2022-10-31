@@ -14,7 +14,7 @@ const My = () => {
     if (logOutRef.current) logOutRef.current.onclick = logout;
   }, [logout]);
   const totalPrice = useMemo(
-    () => session.cart.reduce((s, a) => s + a.price, 0),
+    () => session?.cart?.reduce((s, a) => s + a.price, 0),
     [session]
   );
   return (
@@ -42,7 +42,7 @@ const My = () => {
           카트에 담기
         </button>
         <ul>
-          {session?.cart.map((item) => (
+          {session?.cart?.map((item) => (
             <li key={item.id}>
               {item.name} ({item.price})
               <button onClick={() => removeCartItem(item.id)}>DEL</button>

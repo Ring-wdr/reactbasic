@@ -7,15 +7,6 @@ import {
   // useState,
 } from 'react';
 import { useFetch } from './fetch-hook';
-// import SampleSession from '../../public/data/sample.json';
-// const SampleSession = {
-//   loginUser: { id: 1, name: 'Hong' },
-//   cart: [
-//     { id: 100, name: '라면', price: 3000 },
-//     { id: 101, name: '컵라면', price: 2000 },
-//     { id: 200, name: '파', price: 5000 },
-//   ],
-// };
 
 const SAMPLE_URL = '/data/sample.json';
 
@@ -32,7 +23,6 @@ const reducer = (session, action) => {
     case 'logout':
       return { ...session, loginUser: null };
     case 'addCartItem':
-      session.cart.push(action.payload.item);
       return { ...session };
     case 'removeCartItem':
       return {
@@ -47,7 +37,6 @@ const reducer = (session, action) => {
 export const cachedFetch = {};
 export const SessionContext = createContext();
 export const SessionProvider = ({ children }) => {
-  // const [session, setSession] = useState({ loginUser: {}, cart: [] });
   const [session, dispatch] = useReducer(reducer, {});
 
   const data = useFetch(SAMPLE_URL);
@@ -67,7 +56,8 @@ export const SessionProvider = ({ children }) => {
     console.log('App.session>>>', session);
   };
   const addCartItem = (item) => {
-    dispatch({ type: 'addCartItem', payload: { item } });
+    session.cart.push(item);
+    dispatch({ type: 'addCartItem' });
   };
   const removeCartItem = (itemId) => {
     dispatch({ type: 'removeCartItem', payload: { itemId } });
