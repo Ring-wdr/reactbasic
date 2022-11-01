@@ -32,14 +32,14 @@ export const Items = () => {
     <>
       <h1>Items : {ctx.name}</h1>
 
-      <ul>
+      {/* <ul>
         {session?.cart?.map((item) => (
           <li key={item.id}>
             {item.name}
-            {/* <button onClick={() => removeCartItem(item.id)}>DEL</button> */}
+            <button onClick={() => removeCartItem(item.id)}>DEL</button>
           </li>
         ))}
-      </ul>
+      </ul> */}
       <form onSubmit={submit}>
         <label htmlFor='item-name'>
           상품명:
